@@ -1,21 +1,8 @@
-let tasks = [];
+let tasks = lessonData.lessons;
 let currentIndex = 0;
 
 function normalize(text) {
   return text.trim().replace(/\s+/g, ' ').replace(/["“”]/g, '"').replace(/[’‘]/g, "'");
-}
-
-function loadTasks() {
-  fetch('data.json')
-    .then(res => res.json())
-    .then(data => {
-      tasks = data.lessons;
-      showTask();
-    })
-    .catch(err => {
-      document.getElementById('taskTitle').textContent = "Error loading tasks";
-      console.error(err);
-    });
 }
 
 function showTask() {
@@ -55,4 +42,4 @@ function prevTask() {
   }
 }
 
-window.onload = loadTasks;
+window.onload = showTask;
