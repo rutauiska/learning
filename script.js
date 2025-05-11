@@ -1,34 +1,58 @@
-let correctAnswer = "";
+let tasks = [];
+let currentIndex = 0;
 
 function normalize(text) {
-  return text.trim().replace(/\s+/g, ' ')
-                   .replace(/["“”]/g, '"')
-                   .replace(/[’‘]/g, "'");
+  return text.trim().replace(/\s+/g, ' ').replace(/["“”]/g, '"').replace(/[’‘]/g, "'");
 }
 
-function loadLesson() {
-  fetch('data.json')
-    .then(response => response.json())
+function loadTasks() {
+  fetch('lesson_tasks.json')
+    .then(res => res.json())
     .then(data => {
-      document.querySelector('h2').textContent = data.lesson.title;
-      document.querySelector('p').textContent = data.lesson.question;
-      correctAnswer = data.lesson.answer;
+      tasks = data.lessons;
+      showTask();
     })
     .catch(err => {
-      console.error('Failed to load data:', err);
+      document.getElementById('taskTitle').textContent = "Error loading tasks";
+      console.error(err);
     });
 }
 
+function showTask() {
+  const task = tasks[currentIndex];
+  document.getElementById('taskTitle').textContent = `${currentIndex + 1}. ${task.title}`;
+  document.getElementById('taskQuestion').textContent = task.question;
+  document.getElementById('userInput').value = '';
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('feedback').className = 'result';
+}
+
 function checkAnswer() {
-  const userInput = document.getElementById('userInput').value;
+  const user = document.getElementById('userInput').value;
   const feedback = document.getElementById('feedback');
-  if (normalize(userInput) === normalize(correctAnswer)) {
-    feedback.innerHTML = "Correct! The answer is <code>" + correctAnswer + "</code>";
+  const correct = tasks[currentIndex].answer;
+
+  if (normalize(user) === normalize(correct)) {
+    feedback.textContent = "Correct!";
     feedback.className = "result correct";
   } else {
-    feedback.innerHTML = "Incorrect. Try again!";
+    feedback.textContent = "Incorrect. Try again!";
     feedback.className = "result incorrect";
   }
 }
 
-window.onload = loadLesson;
+function nextTask() {
+  if (currentIndex < tasks.length - 1) {
+    currentIndex++;
+    showTask();
+  }
+}
+
+function prevTask() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    showTask();
+  }
+}
+
+window.onload = loadTasks;
