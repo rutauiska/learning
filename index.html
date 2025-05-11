@@ -1,35 +1,17 @@
 <!DOCTYPE html>
-<html lang="lv">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JS Mācību Lietotne</title>
-  <style>
-    body { font-family: sans-serif; margin: 30px; }
-    select, button { margin-top: 10px; }
-    .block { margin-bottom: 20px; }
-    pre { background: #f4f4f4; padding: 10px; white-space: pre-wrap; }
-  </style>
+  <title>JS Practice Task</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>JavaScript Mācību Lietotne</h1>
-
-  <div class="block">
-    <label for="lesson">Izvēlies nodarbību:</label><br>
-    <select id="lesson"></select>
-  </div>
-
-  <div class="block">
-    <strong>Uzdevums:</strong>
-    <p id="task"></p>
-  </div>
-
-  <div class="block">
-    <button onclick="showAnswer()">Rādīt pareizo atbildi</button>
-    <div id="answer" style="display:none;">
-      <strong>Pareizā atbilde:</strong>
-      <pre id="answerText"></pre>
-    </div>
+  <div class="container">
+    <h2>Task</h2>
+    <p>Loading...</p>
+    <textarea id="userInput" placeholder="Enter your answer here..."></textarea><br>
+    <button onclick="checkAnswer()">Check Answer</button>
+    <div id="feedback" class="result"></div>
   </div>
 
   <script src="script.js"></script>
