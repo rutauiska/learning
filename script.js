@@ -6,7 +6,7 @@ function normalize(text) {
 }
 
 function loadTasks() {
-  fetch('lesson_tasks.json')
+  fetch('data.json')
     .then(res => res.json())
     .then(data => {
       tasks = data.lessons;
