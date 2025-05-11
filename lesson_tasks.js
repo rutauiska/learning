@@ -1,0 +1,104 @@
+const lessonData = {
+  lessons: [
+    {
+      title: "Console Output",
+      question: "Write a command that prints 'Hello, World!' to the console:",
+      answer: "console.log('Hello, World!');"
+    },
+    {
+      title: "Variables and Data Types",
+      question: "Create three variables: a number, a string, and a boolean.",
+      answer: "let num = 10;\nlet text = 'Hi';\nlet isTrue = true;"
+    },
+    {
+      title: "Operators",
+      question: "Calculate the sum and difference of two numbers and check if one is greater than the other.",
+      answer: "let a = 5, b = 3;\nlet sum = a + b;\nlet diff = a - b;\nlet isGreater = a > b;"
+    },
+    {
+      title: "If Statements",
+      question: "Write a function that checks whether a number is positive, negative, or zero.",
+      answer: "function checkNumber(x) {\n  if (x > 0) return 'Positive';\n  else if (x < 0) return 'Negative';\n  else return 'Zero';\n}"
+    },
+    {
+      title: "Loops",
+      question: "Print numbers from 1 to 10 using a for loop.",
+      answer: "for (let i = 1; i <= 10; i++) {\n  console.log(i);\n}"
+    },
+    {
+      title: "Functions",
+      question: "Write a function that adds two numbers and returns the result.",
+      answer: "function add(a, b) {\n  return a + b;\n}"
+    },
+    {
+      title: "Arrow Functions",
+      question: "Create an arrow function that multiplies a number by 2.",
+      answer: "const double = x => x * 2;"
+    },
+    {
+      title: "Arrays",
+      question: "Create an array with five fruits and add another one to the list.",
+      answer: "let fruits = ['apple', 'banana', 'kiwi', 'orange', 'grape'];\nfruits.push('pear');"
+    },
+    {
+      title: "Array Iteration",
+      question: "Print each element of an array using forEach.",
+      answer: "let nums = [1, 2, 3];\nnums.forEach(num => console.log(num));"
+    },
+    {
+      title: "Array Methods",
+      question: "Filter an array to keep only numbers greater than 10.",
+      answer: "let numbers = [5, 12, 8, 20];\nlet large = numbers.filter(x => x > 10);"
+    },
+    {
+      title: "Objects",
+      question: "Create an object 'person' with name, age, and a method that returns a greeting.",
+      answer: "let person = {\n  name: 'Anna',\n  age: 25,\n  greet: function() {\n    return 'Hello, ' + this.name;\n  }\n};"
+    },
+    {
+      title: "JSON",
+      question: "Convert an object to JSON and back to an object.",
+      answer: "let obj = { name: 'John', age: 30 };\nlet json = JSON.stringify(obj);\nlet back = JSON.parse(json);"
+    },
+    {
+      title: "DOM Selection",
+      question: "Select an HTML element by id and change its text content.",
+      answer: "document.getElementById('text').textContent = 'Hello!';"
+    },
+    {
+      title: "Event Listeners",
+      question: "Create a button that shows an alert when clicked.",
+      answer: "document.getElementById('btn').addEventListener('click', () => {\n  alert('Button clicked!');\n});"
+    },
+    {
+      title: "DOM Manipulation",
+      question: "Add a new list item to an existing HTML list.",
+      answer: "let list = document.getElementById('list');\nlet item = document.createElement('li');\nitem.textContent = 'New Item';\nlist.appendChild(item);"
+    },
+    {
+      title: "Form Validation",
+      question: "Create a form that checks if an input is not empty on submit.",
+      answer: "document.getElementById('form').addEventListener('submit', (e) => {\n  e.preventDefault();\n  let input = document.getElementById('name').value;\n  if (input === '') alert('Field is empty!');\n});"
+    },
+    {
+      title: "Timers",
+      question: "Show an alert after 2 seconds using setTimeout.",
+      answer: "setTimeout(() => {\n  alert('After 2 seconds!');\n}, 2000);"
+    },
+    {
+      title: "Fetch API",
+      question: "Use fetch to get data from a public API and log it.",
+      answer: "fetch('https://api.example.com/data')\n  .then(res => res.json())\n  .then(data => console.log(data));"
+    },
+    {
+      title: "Async/Await",
+      question: "Rewrite a fetch call using async/await.",
+      answer: "async function getData() {\n  let res = await fetch('https://api.example.com/data');\n  let data = await res.json();\n  console.log(data);\n}"
+    },
+    {
+      title: "To-Do App",
+      question: "Create a to-do app where you can add, mark, and delete tasks.",
+      answer: "let todos = [];\nfunction addTask() {\n  let task = document.getElementById('input').value;\n  todos.push(task);\n  render();\n}\nfunction render() {\n  document.getElementById('list').innerHTML = todos.map((t, i) => `<li>${t} <button onclick='del(${i})'>Delete</button></li>`).join('');\n}\nfunction del(i) {\n  todos.splice(i, 1);\n  render();\n}"
+    }
+  ]
+};
