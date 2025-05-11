@@ -6,7 +6,7 @@ function normalize(text) {
 }
 
 function loadTasks() {
-  fetch('data.json')
+  fetch('https://rutauiska.github.io/learning/data.json')
     .then(res => res.json())
     .then(data => {
       tasks = data.lessons;
