@@ -1,42 +1,34 @@
-const lessons = [
-  {
-    title: "Kas ir JavaScript un kā tas darbojas pārlūkā?",
-    task: "Uzraksti 'Hello, World!' ziņojumu, izmantojot console.log().",
-    answer: "console.log('Hello, World!');"
-  },
-  {
-    title: "Mainīgie un datu tipi",
-    task: "Izveido trīs mainīgos: skaitli, tekstu un boolean vērtību.",
-    answer: "let skaitlis = 10;\nlet teksts = 'Sveiki';\nlet patiesiba = true;"
-  },
-  {
-    title: "Operatori un izteiksmes",
-    task: "Aprēķini summu, starpību un pārbaudi, vai skaitlis ir lielāks par citu.",
-    answer: "let a = 5, b = 3;\nlet summa = a + b;\nlet starpiba = a - b;\nlet irLielaks = a > b;"
-  },
-  // ... pievieno pārējās nodarbības
-];
+let correctAnswer = "";
 
-// Populate dropdown
-const lessonSelect = document.getElementById('lesson');
-lessons.forEach((lesson, index) => {
-  const opt = document.createElement('option');
-  opt.value = index;
-  opt.textContent = lesson.title;
-  lessonSelect.appendChild(opt);
-});
-
-lessonSelect.addEventListener('change', () => {
-  const selected = lessons[lessonSelect.value];
-  document.getElementById('task').textContent = selected.task;
-  document.getElementById('answerText').textContent = selected.answer;
-  document.getElementById('answer').style.display = 'none';
-});
-
-function showAnswer() {
-  document.getElementById('answer').style.display = 'block';
+function normalize(text) {
+  return text.trim().replace(/\s+/g, ' ')
+                   .replace(/["“”]/g, '"')
+                   .replace(/[’‘]/g, "'");
 }
 
-// Load first lesson
-lessonSelect.value = 0;
-lessonSelect.dispatchEvent(new Event('change'));
+function loadLesson() {
+  fetch('data.json')
+    .then(response => response.json())
+    .then(data => {
+      document.querySelector('h2').textContent = data.lesson.title;
+      document.querySelector('p').textContent = data.lesson.question;
+      correctAnswer = data.lesson.answer;
+    })
+    .catch(err => {
+      console.error('Failed to load data:', err);
+    });
+}
+
+function checkAnswer() {
+  const userInput = document.getElementById('userInput').value;
+  const feedback = document.getElementById('feedback');
+  if (normalize(userInput) === normalize(correctAnswer)) {
+    feedback.innerHTML = "Correct! The answer is <code>" + correctAnswer + "</code>";
+    feedback.className = "result correct";
+  } else {
+    feedback.innerHTML = "Incorrect. Try again!";
+    feedback.className = "result incorrect";
+  }
+}
+
+window.onload = loadLesson;
