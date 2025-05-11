@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>JS Practice Task</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JavaScript Practice App</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h2>Task</h2>
-    <p>Loading...</p>
-    <textarea id="userInput" placeholder="Enter your answer here..."></textarea><br>
-    <button onclick="checkAnswer()">Check Answer</button>
+    <h2 id="taskTitle">Loading...</h2>
+    <p id="taskQuestion">Please wait...</p>
+
+    <textarea id="userInput" placeholder="Enter your answer here..."></textarea>
+
+    <div class="buttons">
+      <button onclick="prevTask()">Previous</button>
+      <button onclick="checkAnswer()">Check Answer</button>
+      <button onclick="nextTask()">Next</button>
+    </div>
+
     <div id="feedback" class="result"></div>
   </div>
 
