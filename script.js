@@ -1,4 +1,4 @@
-et tasks = lessonData.lessons;
+let tasks = lessonData.lessons;
 let currentIndex = 0;
 let score = 0;
 
