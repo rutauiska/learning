@@ -1,6 +1,11 @@
 const lessonData = {
   lessons: [
     {
+      title: "Tests",
+      question: "Write 1:",
+      answer: "1"
+    },
+    {
       title: "Console Output",
       question: "Write a command that prints 'Hello, World!' to the console:",
       answer: "console.log('Hello, World!');"
