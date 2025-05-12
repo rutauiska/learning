@@ -3,16 +3,36 @@ let currentIndex = 0;
 let score = 0;
 
 function normalize(text) {
-  return text.trim().replace(/\\s+/g, ' ').replace(/["“”]/g, '"').replace(/[’‘]/g, "'");
+  return text.trim().replace(/\s+/g, ' ').replace(/["“”]/g, '"').replace(/[’‘]/g, "'");
 }
 
 function showTask() {
   const task = tasks[currentIndex];
+
   document.getElementById('taskTitle').textContent = `${currentIndex + 1}. ${task.title}`;
   document.getElementById('taskQuestion').textContent = task.question;
   document.getElementById('userInput').value = '';
   document.getElementById('feedback').textContent = '';
   document.getElementById('feedback').className = 'result';
+
+  // Theory
+  document.getElementById('theorySummary').textContent = task.theory || "No theory available.";
+  document.getElementById('theoryMore').textContent = task.theory_more || "";
+  document.getElementById('theoryMore').style.display = 'none';
+  document.getElementById('toggleTheory').style.display = task.theory_more ? 'inline' : 'none';
+  document.getElementById('toggleTheory').textContent = 'Show more';
+}
+
+function toggleTheory() {
+  const more = document.getElementById('theoryMore');
+  const toggleBtn = document.getElementById('toggleTheory');
+  if (more.style.display === 'none') {
+    more.style.display = 'block';
+    toggleBtn.textContent = 'Show less';
+  } else {
+    more.style.display = 'none';
+    toggleBtn.textContent = 'Show more';
+  }
 }
 
 function updateScoreDisplay() {
@@ -25,11 +45,11 @@ function updateScoreDisplay() {
 }
 
 function checkAnswer() {
-  const user = document.getElementById('userInput').value;
-  const feedback = document.getElementById('feedback');
+  const userInput = document.getElementById('userInput').value;
   const correct = tasks[currentIndex].answer;
+  const feedback = document.getElementById('feedback');
 
-  if (normalize(user) === normalize(correct)) {
+  if (normalize(userInput) === normalize(correct)) {
     feedback.textContent = "Correct!";
     feedback.className = "result correct";
     score++;
