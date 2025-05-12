@@ -102,3 +102,27 @@ button {
   cursor: pointer;
   font-weight: bold;
 }
+
+.status {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+.progressBar {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 18px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#progressFill {
+  height: 100%;
+  width: 0%;
+  background-color: #007acc;
+  transition: width 0.4s ease-in-out;
+}
