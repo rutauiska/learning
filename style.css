@@ -86,3 +86,19 @@ button {
   100% { transform: scale(1);   color: #007acc; }
 }
 
+.theory {
+  background: #eef6ff;
+  padding: 10px 15px;
+  border-left: 4px solid #007acc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.theory button {
+  margin-top: 5px;
+  background: none;
+  color: #007acc;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
