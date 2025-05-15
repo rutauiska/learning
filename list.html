@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dynamic Lesson Loader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <h1>Loading lesson...</h1>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const lessonKey = params.get('lesson') || 'js'; // Default to JS
+
+    fetch('lessons.json')
+      .then(res => res.json())
+      .then(data => {
+        const lesson = data.lessons.find(l => l.key === lessonKey);
+        if (lesson) {
+          const dataScript = document.createElement('script');
+          dataScript.src = lesson.file;
+          dataScript.onload = () => {
+            const appScript = document.createElement('script');
+            appScript.src = 'script.js';
+            document.body.appendChild(appScript);
+          };
+          document.body.appendChild(dataScript);
+        } else {
+          document.body.innerHTML = '<h2>Lesson not found</h2>';
+        }
+      })
+      .catch(() => {
+        document.body.innerHTML = '<h2>Error loading lessons.json</h2>';
+      });
+  </script>
+</body>
+</html>
