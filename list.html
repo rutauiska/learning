@@ -4,34 +4,28 @@
   <meta charset="UTF-8" />
   <title>Dynamic Lesson Loader</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="lessons.js"></script> <!-- load lesson list directly -->
 </head>
 <body>
   <h1>Loading lesson...</h1>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const lessonKey = params.get('lesson') || 'js'; // Default to JS
+    const lessonKey = params.get('lesson') || 'js';
 
-    fetch('lessons.json')
-      .then(res => res.json())
-      .then(data => {
-        const lesson = data.lessons.find(l => l.key === lessonKey);
-        if (lesson) {
-          const dataScript = document.createElement('script');
-          dataScript.src = lesson.file;
-          dataScript.onload = () => {
-            const appScript = document.createElement('script');
-            appScript.src = 'script.js';
-            document.body.appendChild(appScript);
-          };
-          document.body.appendChild(dataScript);
-        } else {
-          document.body.innerHTML = '<h2>Lesson not found</h2>';
-        }
-      })
-      .catch(() => {
-        document.body.innerHTML = '<h2>Error loading lessons.json</h2>';
-      });
+    const lesson = lessons.find(l => l.key === lessonKey);
+    if (lesson) {
+      const dataScript = document.createElement('script');
+      dataScript.src = lesson.file;
+      dataScript.onload = () => {
+        const appScript = document.createElement('script');
+        appScript.src = 'script.js';
+        document.body.appendChild(appScript);
+      };
+      document.body.appendChild(dataScript);
+    } else {
+      document.body.innerHTML = '<h2>Lesson not found</h2>';
+    }
   </script>
 </body>
 </html>
